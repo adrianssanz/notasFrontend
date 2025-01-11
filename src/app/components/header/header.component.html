@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light bg-header">
-    <div class="container-fluid p-3">
-      <a class="text-decoration-none display-6 text-light mx-3" routerLink="/">MisNotas</a>
-      <a routerLink="/login" class="btn btn-outline-light w-auto mx-3">Login</a>
-    </div>
-  </nav>
+  <div class="container-fluid p-3">
+    <a class="text-decoration-none display-6 text-light mx-3" routerLink="/">MisNotas</a>
+    <a routerLink="/login" *ngIf="!loggedIn" class="btn btn-outline-success w-auto mx-3">Login</a>
+    <a *ngIf="loggedIn" (click)="logOut()" class="btn btn-outline-danger w-auto mx-3">Logout</a>
+  </div>
+</nav>
