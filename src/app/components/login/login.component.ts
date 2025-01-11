@@ -19,6 +19,18 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router){}
 
+  passwordVisible: boolean = false;
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+    const passwordField: any = document.getElementById('password');
+    if (this.passwordVisible) {
+      passwordField.type = 'text';
+    } else {
+      passwordField.type = 'password';
+    }
+  }
+
   login(){
     this.authService.login(this.username, this.password).subscribe({
       next: (response)=>{
