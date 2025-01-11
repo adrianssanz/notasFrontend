@@ -8,6 +8,10 @@
       <label>Contraseña</label>
       <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" placeholder="Contraseña" required>
     </div>
+    <div></div>
+    <div *ngIf="errorMessage" class="alert alert-danger my-1">
+      {{ errorMessage }}
+    </div>
     <!--<div class="form-check my-1">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
