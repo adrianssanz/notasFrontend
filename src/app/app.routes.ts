@@ -4,6 +4,7 @@ import { LoginComponent, } from './components/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
+import { auth2Guard } from './guards/auth2.guard';
 
 
 export const routes: Routes = [
@@ -13,11 +14,11 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: WelcomeComponent
+        component: WelcomeComponent, canActivate: [auth2Guard]
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent, canActivate: [auth2Guard]
       },
       {
         path: 'dashboard',
