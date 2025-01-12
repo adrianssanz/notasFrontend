@@ -5,6 +5,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { auth2Guard } from './guards/auth2.guard';
+import { ErrorComponent } from './error/error/error.component';
 
 
 export const routes: Routes = [
@@ -26,4 +27,7 @@ export const routes: Routes = [
       }
     ]
   },
+  {
+    path:'**', component: ErrorComponent
+  }
 ];
