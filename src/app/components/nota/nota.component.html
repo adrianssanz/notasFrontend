@@ -1,0 +1,8 @@
+<div class="card">
+    <h3 class="card-header">{{ nota.titulo }}</h3>
+    <p class="card-body">{{ nota.descripcion }}</p>
+    <p class="card-footer">Fecha de creación: {{ nota.fechaCreacion | date: 'dd/MM/yyyy, HH:mm' }}</p>
+    <div class="d-flex justify-content-end">
+    <a (click)="deleteNota(nota.id)" class="btn btn-danger w-25 m-3 text-ed">Eliminar</a>
+    </div>
+</div>
