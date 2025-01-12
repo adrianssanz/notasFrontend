@@ -1,19 +1,12 @@
-<div class="d-flex flex-column min-vh-100">
+<div class="d-flex flex-column vh-100">
 
-    <!-- Header -->
-    <header>
-      <app-header></app-header>
-    </header>
-    
-    <!-- Contenido principal (RouterOutlet) -->
-    <main class="flex-grow-1 bg-inicio d-flex flex-column justify-content-center align-items-center">
-        <router-outlet></router-outlet>
-    </main>
-  
-    <!-- Footer -->
-    <footer>
-      <app-footer></app-footer>
-    </footer>
-    
+  <div class="bg-inicio flex-grow-1">
+    <router-outlet class="h-100"></router-outlet>
   </div>
   
+  <!-- Footer -->
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+  
+</div>
