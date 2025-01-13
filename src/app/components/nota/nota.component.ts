@@ -23,8 +23,19 @@ export class NotaComponent {
       window.location.reload();
     },
     error: (error) => {
-    console.error('Error al cargar las notas:', error);
+    console.error('Error al eliminar la notas:', error);
     },
   });
   }
+
+  updateEstadoNota(id: number): void {
+    this.apiService.updateEstadoNota(id).subscribe({
+      next: (data) => {
+        window.location.reload();
+      },
+      error: (error) => {
+      console.error('Error al finalizar la notas:', error);
+      },
+    });
+    }
 }

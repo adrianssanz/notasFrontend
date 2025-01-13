@@ -8,9 +8,15 @@
     </div>
     <div class="card-footer">
         <p><strong>Fecha de creación:</strong> {{ nota.fechaCreacion | date: 'dd/MM/yyyy, HH:mm' }}</p>
-        <p><strong>Estado</strong> {{nota.estado.estado}}</p>
+        <p><strong>Estado:</strong> {{nota.estado.estado}}</p>
         <div class="d-flex justify-content-end">
-            <a (click)="deleteNota(nota.id)" class="btn btn-danger w-25 m-3 text-ed">Eliminar</a>
+            <a (click)="updateEstadoNota(nota.id)"  
+               [class.disabled]="nota.estado.estado !== 'En Curso'" 
+               [attr.href]="nota.estado.estado === 'En Curso' ? '#' : null"
+               class="btn btn-primary w-25 m-3">
+               Terminar tarea
+            </a>
+            <a (click)="deleteNota(nota.id)" class="btn btn-danger w-25 m-3">Eliminar</a>
         </div>
     </div>
 
