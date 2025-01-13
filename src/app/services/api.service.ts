@@ -21,6 +21,14 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/notas/${id}`, { withCredentials: true });
   }
 
+  updateEstadoNota(id: number): Observable<void> {
+    return this.http.put<void>(
+      `${this.apiUrl}/notas/${id}/estado`, 
+      {},
+      { withCredentials: true }
+    );
+  }
+
   getNotaById(id: number){
     return this.http.get(`${this.apiUrl}/notas/${id}`, {withCredentials: true})
   }
