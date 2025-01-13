@@ -1,8 +1,11 @@
 <div class="m-5">
     <h2 class="text-center text-light display-4 mb-5">Mis Notas</h2>
-    <div class="row">
+    <div class="row" *ngIf="notas.length > 0; else noNotas">
         <div class="col-lg-4 mb-4" *ngFor="let nota of notas">
             <app-nota [nota]="nota"></app-nota>
         </div>
     </div>
+    <ng-template #noNotas>
+        <p class="text-center fs-3 text-light">No hay notas.</p>
+    </ng-template>
 </div>
