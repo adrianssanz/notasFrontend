@@ -3,21 +3,25 @@ import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
-  imports: [ FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [AuthService]
+  providers: [AuthService],
 })
 export class LoginComponent {
-  username: string ='';
-  password: string='';
-  errorMessage: string='';
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   passwordVisible: boolean = false;
 
@@ -31,16 +35,26 @@ export class LoginComponent {
     }
   }
 
-  login(){
+  login() {
     this.authService.login(this.username, this.password).subscribe({
-      next: (response)=>{
-        this.router.navigate(['/dashboard']);
-        console.log(response.message);
+      next: (response) => {
+        this.snackBar
+          .open('Iniciando sesión', '', {
+            duration: 1000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          })
+          .afterDismissed()
+          .subscribe(() => {
+            this.router.navigate(['/dashboard']);
+            console.log(response.message);
+          });
+        
       },
       error: (err) => {
         console.error(err.error.message);
         this.errorMessage = err.error.message;
-      }
+      },
     });
   }
 }
