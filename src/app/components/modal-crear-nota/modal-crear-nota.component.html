@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center">Crear Nota</h5>
+    <hr>
+    <form class="p-4" (ngSubmit)="crearNota()" #loginForm="ngForm" style="width: 400px;">
+      <div class="form-group my-2">
+        <label for="titulo">Titulo</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="titulo" placeholder="Titulo" required>
+      </div>
+      <div class="form-group my-2">
+        <label for="descripcion">Descripción</label>
+        <textarea
+          class="form-control"
+          id="descripcion"
+          name="descripcion"
+          [(ngModel)]="descripcion"
+          placeholder="Descripción"
+          required
+          maxlength="255"
+          style="height: 150px;"
+        ></textarea>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary w-100 my-3" [disabled]="!loginForm.valid">Crear</button>
+        <button (click)="cerrarModal()" class="fs-5 btn btn-danger m-3 text-white">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

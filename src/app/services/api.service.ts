@@ -17,6 +17,13 @@ export class ApiService {
     return this.http.get<Nota[]>(`${this.apiUrl}/notas`, { withCredentials: true });
   }
 
+  createNota(titulo: string, descripcion: string): Observable<Nota> {
+    console.log("Service" + titulo, descripcion)
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = { titulo, descripcion };
+    return this.http.post<Nota>(`${this.apiUrl}/notas`, body, { headers, withCredentials: true });
+  }
+
   deleteNota(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/notas/${id}`, { withCredentials: true });
   }

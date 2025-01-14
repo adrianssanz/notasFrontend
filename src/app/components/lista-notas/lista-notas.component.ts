@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Nota } from '../../interfaces/nota';
 import { ApiService } from '../../services/api.service';
 import { NotaComponent } from '../nota/nota.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCrearNotaComponent } from '../modal-crear-nota/modal-crear-nota.component';
 
 @Component({
   selector: 'app-lista-notas',
@@ -12,13 +14,17 @@ import { NotaComponent } from '../nota/nota.component';
 })
 export class ListaNotasComponent implements OnInit {
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private matDialog: MatDialog) {}
 
   notas: Nota[] = [];
 
   ngOnInit(): void {
     this.cargarNotas();
   }
+
+  abrirModalCrearNota() {
+      this.matDialog.open(ModalCrearNotaComponent);
+    }
 
   cargarNotas(): void {
     this.apiService.getNotas().subscribe({

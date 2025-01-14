@@ -1,6 +1,9 @@
 <nav class="navbar navbar-light bg-header">
   <div class="container-fluid p-3">
     <a class="text-decoration-none display-6 text-light mx-3" routerLink="/">MisNotas</a>
-    <a (click)="abrirModal()" class="btn btn-outline-danger w-auto mx-3">Logout</a>
+    <div>
+      <a (click)="abrirModalCrearNota()" class="btn btn-outline-success w-auto mx-3">Crear Nota</a>
+      <a (click)="abrirModalCerrarSesion()" class="btn btn-outline-danger w-auto mx-3">Logout</a>
+    </div>
   </div>
 </nav>
