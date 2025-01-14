@@ -1,34 +1,22 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Importar CommonModule
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCerrarSesionComponent } from '../modal-cerrar-sesion/modal-cerrar-sesion.component';
 
 @Component({
   selector: 'app-header',
-  standalone: true, // Define el componente como independiente
-  imports: [CommonModule, RouterModule], // Incluir CommonModule aquí
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
-  loggedIn: boolean = false;
+export class HeaderComponent {
+  constructor(
+    private matDialog: MatDialog
+  ) {}
 
-  constructor(private authService: AuthService, private router: Router,private cdRef: ChangeDetectorRef) {}
-
-  ngOnInit() {
-    this.authService.isLoggedIn().subscribe((isLoggedIn) => {
-      this.loggedIn = isLoggedIn;
-      console.log('Is logged in:', isLoggedIn);
-      this.cdRef.detectChanges();
-    });
-  }
-
-  logOut() {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['/']);
-      this.loggedIn = false;
-      console.log('Logged out');
-      this.cdRef.detectChanges();
-    });
+  abrirModal() {
+    this.matDialog.open(ModalCerrarSesionComponent);
   }
 }
