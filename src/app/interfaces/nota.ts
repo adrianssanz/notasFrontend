@@ -13,6 +13,13 @@ export interface Estado{
     estado: string;
 }
 
+export interface Respuesta{
+    totalItems: number;
+    notas: Nota[];
+    totalPaginas: number;
+    paginaActual: number;
+}
+
 export interface Usuario {
     id: number;
     usuario: string;

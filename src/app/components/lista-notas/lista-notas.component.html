@@ -1,14 +1,22 @@
 <div class="m-5">
-    <h2 class="text-center text-light display-4 mb-5">Mis Notas</h2>
-    <div class="row" *ngIf="notas.length > 0; else noNotas">
-        <div class="col-md-6 col-lg-4 mb-4" *ngFor="let nota of notas">
-            <app-nota [nota]="nota"></app-nota>
-        </div>
+  <h2 class="text-center text-light display-4 mb-5">Bienvenido {{usuario.usuario}}</h2>
+  <div class="row" *ngIf="notas.length > 0; else noNotas">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let nota of notas">
+      <app-nota [nota]="nota"></app-nota>
     </div>
-    <ng-template #noNotas>
-        <p class="text-center fs-3 text-light">No hay notas,<br>cree una para empezar.</p>
-        <div class="text-center">
-            <a (click)="abrirModalCrearNota()" class="btn btn-primary w-auto mx-3">Crear Nota</a>
-        </div>
-    </ng-template>
+  </div>
+  <ng-template #noNotas>
+    <p class="text-center fs-3 text-light">No hay notas,<br>cree una para empezar.</p>
+    <div class="text-center">
+      <a (click)="abrirModalCrearNota()" class="btn btn-primary w-auto mx-3">Crear Nota</a>
+    </div>
+  </ng-template>
+  <div class="text-center text-light" *ngIf="notas.length > 0">
+    <p>Total de resultados: {{ respuesta.totalItems }}</p>
+    <p>Pagina {{ respuesta.paginaActual + 1}} de {{respuesta.totalPaginas}}</p>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary mx-1" (click)="anteriorPagina()" [disabled]="pagina <= 0">Anterior</button>
+      <button class="btn btn-primary mx-1" (click)="siguientePagina()" [disabled]="pagina >= totalPaginas - 1">Siguiente</button>
+    </div>
+  </div>
 </div>

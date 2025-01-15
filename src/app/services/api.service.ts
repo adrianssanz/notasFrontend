@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Nota } from '../interfaces/nota';
+import { Nota, Respuesta } from '../interfaces/nota';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getNotas(): Observable<Nota[]> {
-    return this.http.get<Nota[]>(`${this.apiUrl}/notas`, { withCredentials: true });
+  getNotas(page: number): Observable<Respuesta> {
+    return this.http.get<Respuesta>(`${this.apiUrl}/notas?page=${page}`, { withCredentials: true });
   }
 
   createNota(titulo: string, descripcion: string): Observable<Nota> {
