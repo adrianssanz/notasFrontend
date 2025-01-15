@@ -5,6 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
+import { ModalUpdateNotaComponent } from '../modal-update-nota/modal-update-nota.component';
 import { CapitalizePipe } from '../../classes/CapitalizePipe';
 
 @Component({
@@ -22,8 +23,14 @@ export class NotaComponent {
     private matDialog: MatDialog
   ) {}
 
-  abrirModal(id: number) {
+  abrirModalEliminar(id: number) {
     this.matDialog.open(ModalEliminarComponent, {
+      data: { id: id },
+    });
+  }
+
+  abrirModalUpdate(id: number) {
+    this.matDialog.open(ModalUpdateNotaComponent, {
       data: { id: id },
     });
   }
