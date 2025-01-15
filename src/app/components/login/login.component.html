@@ -17,6 +17,7 @@
     <div *ngIf="errorMessage" class="alert alert-danger">
       {{ errorMessage }}
     </div>
+    <a routerLink="/register" class="text-decoration-none">Registrarse.</a>
     <button type="submit" class="btn btn-primary w-100 my-3" [disabled]="!loginForm.valid">Iniciar sesión</button>
   </form>
 </div>
