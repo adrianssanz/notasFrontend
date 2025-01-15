@@ -1,7 +1,7 @@
 <div class="card h-100" [ngClass]="{'border-5 border-success': nota.estado.estado === 'En Curso', 'border-3 border-danger': nota.estado.estado === 'Terminada'}">
     <div class="card-header">
         <h3>{{ nota.titulo }}</h3>
-        <p><strong>De:</strong> {{nota.usuario.usuario}} - {{nota.usuario.email}}</p>
+        <p><strong>De:</strong> {{nota.usuario.usuario | capitalize}} - {{nota.usuario.email}}</p>
     </div>
     <div class="card-body">
         <p>{{ nota.descripcion }}</p>

@@ -5,11 +5,12 @@ import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
+import { CapitalizePipe } from '../../classes/CapitalizePipe';
 
 @Component({
   selector: 'app-nota',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CapitalizePipe],
   templateUrl: './nota.component.html',
   styleUrls: ['./nota.component.css'],
 })

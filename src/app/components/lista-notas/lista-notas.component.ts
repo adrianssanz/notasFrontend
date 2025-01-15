@@ -6,10 +6,11 @@ import { NotaComponent } from '../nota/nota.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCrearNotaComponent } from '../modal-crear-nota/modal-crear-nota.component';
 import { AuthService } from '../../services/auth.service';
+import { CapitalizePipe } from '../../classes/CapitalizePipe';
 
 @Component({
   selector: 'app-lista-notas',
-  imports: [CommonModule, NotaComponent],
+  imports: [CommonModule, NotaComponent, CapitalizePipe],
   templateUrl: './lista-notas.component.html',
   styleUrl: './lista-notas.component.css',
 })
