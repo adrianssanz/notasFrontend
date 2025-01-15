@@ -25,7 +25,7 @@ export class ListaNotasComponent implements OnInit {
   respuesta!: Respuesta;
   pagina: number = 0;
   totalPaginas: number = 0;
-  usuario!: Usuario;
+  usuario!: string;
 
   ngOnInit(): void {
     this.cargarNotas();
@@ -39,8 +39,7 @@ export class ListaNotasComponent implements OnInit {
   cargarUsuario(): void {
     this.authService.getUser().subscribe((user) => {
       if (user) {
-        console.log('Usuario logueado:', user);
-        this.usuario = user;
+        this.usuario = user.usuario;
       } else {
         console.log('No hay usuario logueado.');
       }
