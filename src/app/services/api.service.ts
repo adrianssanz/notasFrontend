@@ -42,7 +42,7 @@ export class ApiService {
     );
   }
 
-  getNotaById(id: number){
-    return this.http.get(`${this.apiUrl}/notas/${id}`, {withCredentials: true})
+  getNotaById(id: number): Observable<Nota>{
+    return this.http.get<Nota>(`${this.apiUrl}/notas/${id}`, {withCredentials: true})
   }
 }
