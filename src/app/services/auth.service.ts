@@ -18,6 +18,12 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`, body, { headers, withCredentials: true });
   }
 
+  register(usuario: string, email: string, password: string): Observable<Usuario> {
+    const body = { usuario, email, password };
+    console.log("Service" + body)
+      return this.http.post<Usuario>(`${this.baseUrl}/register`, body, { withCredentials: true });
+    }
+
   isLoggedIn(): Observable<boolean> {
     return this.http.get(`${this.baseUrl}/sesion`, {withCredentials: true}).pipe(
       map(() => true),
