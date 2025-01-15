@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
+import { Usuario } from '../interfaces/nota';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,14 @@ export class AuthService {
       catchError(() => of(false))
     );
   }
+
+  getUser(): Observable<Usuario | null> {
+    return this.http.get<Usuario>(`${this.baseUrl}/sesion`, {withCredentials: true}).pipe(
+      map((user) => user),
+      catchError(() => of(null))  // Devuelve null si hay error
+    );
+  }
+  
 
   logout(): Observable<any>{
     return this.http.post(`${this.baseUrl}/logout`,{}, {withCredentials: true}).pipe(
