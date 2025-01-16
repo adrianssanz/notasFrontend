@@ -40,7 +40,6 @@ export class ModalUpdateNotaComponent implements OnInit {
       next: (data) => {
         this.titulo = data.titulo;
         this.descripcion = data.descripcion;
-        console.log(data);
       },
       error: (error) => {
         console.error('Error al cargar las notas:', error);
@@ -62,6 +61,7 @@ export class ModalUpdateNotaComponent implements OnInit {
           .afterDismissed()
           .subscribe(() => {
             window.location.reload();
+            console.log("Nota editada.")
           });
       },
       error:  (err) =>{

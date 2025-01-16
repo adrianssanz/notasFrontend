@@ -41,6 +41,7 @@ export class ModalCrearNotaComponent {
           .afterDismissed()
           .subscribe(() => {
             window.location.reload();
+            console.log("Nota creada.");
           });
       },
       error:  (err) =>{

@@ -20,8 +20,7 @@ export class AuthService {
 
   register(usuario: string, email: string, password: string): Observable<Usuario> {
     const body = { usuario, email, password };
-    console.log("Service" + body)
-      return this.http.post<Usuario>(`${this.baseUrl}/register`, body, { withCredentials: true });
+    return this.http.post<Usuario>(`${this.baseUrl}/register`, body, { withCredentials: true });
     }
 
   isLoggedIn(): Observable<boolean> {
@@ -34,7 +33,7 @@ export class AuthService {
   getUser(): Observable<Usuario | null> {
     return this.http.get<Usuario>(`${this.baseUrl}/sesion`, {withCredentials: true}).pipe(
       map((user) => user),
-      catchError(() => of(null))  // Devuelve null si hay error
+      catchError(() => of(null))
     );
   }
   

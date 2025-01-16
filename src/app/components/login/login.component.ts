@@ -48,7 +48,7 @@ export class LoginComponent {
           .afterDismissed()
           .subscribe(() => {
             this.router.navigate(['/dashboard']);
-            console.log(response.message);
+            console.info("Sesión iniciada.");
           });
         
       },

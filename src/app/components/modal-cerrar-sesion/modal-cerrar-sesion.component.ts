@@ -35,6 +35,7 @@ export class ModalCerrarSesionComponent {
       .subscribe(() => {
         this.authService.logout().subscribe(() => {
           this.router.navigate(['/']);
+          console.log("Sesión cerrada.");
         });
       });
   }

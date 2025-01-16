@@ -29,6 +29,7 @@ export class ModalEliminarComponent {
       this.apiService.deleteNota(id).subscribe({
         next: (data) => {
           window.location.reload();
+          console.log("Nota eliminada.");
         },
         error: (error) => {
           console.error('Error al eliminar la notas:', error);

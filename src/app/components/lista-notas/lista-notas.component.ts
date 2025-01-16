@@ -61,13 +61,11 @@ export class ListaNotasComponent implements OnInit {
   }
 
   cargarNotas(): void {
-    console.log(this.pagina);
     this.apiService.getNotas(this.pagina).subscribe({
       next: (data) => {
         this.notas = data.notas;
         this.respuesta = data;
         this.totalPaginas = data.totalPaginas;
-        console.log(data);
       },
       error: (error) => {
         console.error('Error al cargar las notas:', error);
