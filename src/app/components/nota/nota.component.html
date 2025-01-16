@@ -1,4 +1,5 @@
-<div class="card h-100" [ngClass]="{'border-5 border-success': nota.estado.estado === 'En Curso', 'border-3 border-danger': nota.estado.estado === 'Terminada'}">
+<!--<div class="card h-100" [ngClass]="{'border-5 border-success': nota.estado.estado === 'En Curso', 'border-3 border-danger': nota.estado.estado === 'Terminada'}">-->
+<div class="card h-100">
     <div class="card-header">
         <h3>{{ nota.titulo }}</h3>
         <p><strong>De:</strong> {{nota.usuario.usuario | capitalize}} - {{nota.usuario.email}}</p>
@@ -8,17 +9,16 @@
     </div>
     <div class="card-footer">
         <p><strong>Fecha de creación:</strong> {{ nota.fechaCreacion | date: 'dd/MM/yyyy, HH:mm' }}</p>
-        <p><strong>Estado:</strong> {{nota.estado.estado}}</p>
+        <!--<p><strong>Estado:</strong> {{nota.estado.estado}}</p>-->
         <div class="d-flex justify-content-end">
             <a (click)="abrirModalUpdate(nota.id)" class="btn btn-success m-3"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></a>
-            <a (click)="updateEstadoNota(nota.id)"  
+            <!--<a (click)="updateEstadoNota(nota.id)"  
                [class.disabled]="nota.estado.estado !== 'En Curso'" 
                [attr.href]="nota.estado.estado === 'En Curso' ? '#' : null"
                class="btn btn-primary m-3">
                <i class="fa-solid fa-square-xmark" style="color: #ffffff;"></i>
-            </a>
+            </a>-->
             <a (click)="abrirModalEliminar(nota.id)" class="btn btn-danger m-3"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></a>
         </div>
     </div>
-
 </div>
