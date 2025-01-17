@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providers: [AuthService],
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
   errorMessage: string = '';
 
@@ -37,7 +37,7 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.login(this.username, this.password).subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         this.snackBar
           .open('Iniciando sesión', '', {
