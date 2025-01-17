@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
+import { NotasService } from '../../services/notas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -20,7 +20,7 @@ export class ModalCrearNotaComponent {
   constructor(
     public matDialogRef: MatDialogRef<ModalCrearNotaComponent>,
     private router: Router,
-    private apiService: ApiService,
+    private notasService: NotasService,
     private snackBar: MatSnackBar
   ){}
 
@@ -29,7 +29,7 @@ export class ModalCrearNotaComponent {
   }
 
   crearNota(): void{
-    this.apiService.createNota(this.titulo, this.descripcion).subscribe({
+    this.notasService.createNota(this.titulo, this.descripcion).subscribe({
       next: (response)=>{
         this.matDialogRef.close();
         this.snackBar

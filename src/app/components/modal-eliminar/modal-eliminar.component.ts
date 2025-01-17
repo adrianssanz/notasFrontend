@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common'; 
-import { ApiService } from '../../services/api.service';
+import { NotasService } from '../../services/notas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -16,7 +16,7 @@ export class ModalEliminarComponent {
   constructor(
     public matDialogRef: MatDialogRef<ModalEliminarComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
-    private apiService: ApiService,
+    private notasService: NotasService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -26,7 +26,7 @@ export class ModalEliminarComponent {
     this.snackBar.open("Borrando nota", '', {
       duration: 3000
     }).afterDismissed().subscribe(() => {
-      this.apiService.deleteNota(id).subscribe({
+      this.notasService.deleteNota(id).subscribe({
         next: (data) => {
           window.location.reload();
           console.log("Nota eliminada.");

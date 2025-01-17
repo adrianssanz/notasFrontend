@@ -6,7 +6,7 @@ import { Nota, Respuesta } from '../interfaces/nota';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class NotasService {
 
   apiUrl = 'http://localhost:8080/api';
   

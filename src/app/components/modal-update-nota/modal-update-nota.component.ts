@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
+import { NotasService } from '../../services/notas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Nota } from '../../interfaces/nota';
 
@@ -27,7 +27,7 @@ export class ModalUpdateNotaComponent implements OnInit {
     public matDialogRef: MatDialogRef<ModalUpdateNotaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number },
     private router: Router,
-    private apiService: ApiService,
+    private notasService: NotasService,
     private snackBar: MatSnackBar
   ){}
 
@@ -36,7 +36,7 @@ export class ModalUpdateNotaComponent implements OnInit {
   }
 
   cargarNota(): void{
-    this.apiService.getNotaById(this.data.id).subscribe({
+    this.notasService.getNotaById(this.data.id).subscribe({
       next: (data) => {
         this.titulo = data.titulo;
         this.descripcion = data.descripcion;
@@ -49,7 +49,7 @@ export class ModalUpdateNotaComponent implements OnInit {
 
   editarNota(): void{
     const id = this.data.id;
-    this.apiService.updateNota(id , this.titulo, this.descripcion).subscribe({
+    this.notasService.updateNota(id , this.titulo, this.descripcion).subscribe({
       next: (response)=>{
         this.matDialogRef.close();
         this.snackBar

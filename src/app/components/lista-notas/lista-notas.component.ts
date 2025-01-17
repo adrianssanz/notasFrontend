@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Nota, Respuesta, Usuario } from '../../interfaces/nota';
-import { ApiService } from '../../services/api.service';
+import { NotasService } from '../../services/notas.service';
 import { NotaComponent } from '../nota/nota.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCrearNotaComponent } from '../modal-crear-nota/modal-crear-nota.component';
 import { AuthService } from '../../services/auth.service';
-import { CapitalizePipe } from '../../classes/CapitalizePipe';
 
 @Component({
   selector: 'app-lista-notas',
-  imports: [CommonModule, NotaComponent, CapitalizePipe],
+  imports: [CommonModule, NotaComponent],
   templateUrl: './lista-notas.component.html',
   styleUrl: './lista-notas.component.css',
 })
 export class ListaNotasComponent implements OnInit {
   constructor(
-    private apiService: ApiService,
+    private notasService: NotasService,
     private matDialog: MatDialog,
     private authService: AuthService
   ) {}
@@ -61,7 +60,7 @@ export class ListaNotasComponent implements OnInit {
   }
 
   cargarNotas(): void {
-    this.apiService.getNotas(this.pagina).subscribe({
+    this.notasService.getNotas(this.pagina).subscribe({
       next: (data) => {
         this.notas = data.notas;
         this.respuesta = data;

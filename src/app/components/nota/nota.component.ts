@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Nota } from '../../interfaces/nota';
-import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
+import { NotasService } from '../../services/notas.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
 import { ModalUpdateNotaComponent } from '../modal-update-nota/modal-update-nota.component';
@@ -19,7 +18,7 @@ export class NotaComponent {
   @Input() nota!: Nota;
 
   constructor(
-    private apiService: ApiService,
+    private notasService: NotasService,
     private matDialog: MatDialog
   ) {}
 
@@ -36,7 +35,7 @@ export class NotaComponent {
   }
 
   updateEstadoNota(id: number): void {
-    this.apiService.updateEstadoNota(id).subscribe({
+    this.notasService.updateEstadoNota(id).subscribe({
       next: (data) => {
         window.location.reload();
       },
