@@ -1,5 +1,5 @@
 <div class="m-5">
-  <h2 class="text-center text-light display-4 mb-5">Bienvenido {{usuario | capitalize}}</h2>
+  <h2 class="text-center text-light display-4 mb-5">Bienvenido {{ usuario }}</h2>
   <div class="row" *ngIf="notas.length > 0; else noNotas">
     <div class="col-md-6 col-lg-4 mb-4" *ngFor="let nota of notas">
       <app-nota [nota]="nota"></app-nota>

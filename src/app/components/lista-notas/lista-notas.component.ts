@@ -39,7 +39,7 @@ export class ListaNotasComponent implements OnInit {
   cargarUsuario(): void {
     this.authService.getUser().subscribe((user) => {
       if (user) {
-        this.usuario = user.usuario;
+        this.usuario = '@' + user.usuario;
       } else {
         console.log('No hay usuario logueado.');
       }
