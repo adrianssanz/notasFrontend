@@ -13,6 +13,11 @@ export interface Estado{
     estado: string;
 }
 
+export interface Role{
+    id: number;
+    rol: string;
+}
+
 export interface Respuesta{
     totalItems: number;
     notas: Nota[];
@@ -24,4 +29,5 @@ export interface Usuario {
     id: number;
     usuario: string;
     email: string;
+    rol: Role;
  }
