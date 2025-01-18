@@ -2,7 +2,9 @@
   <div class="container-fluid p-3">
     <a class="text-decoration-none display-6 text-light mx-3" routerLink="/">MisNotas</a>
     <div>
-      <a (click)="abrirModalCrearNota()" class="btn btn-outline-success w-auto mx-3">Crear Nota</a>
+      <a routerLink="/usuarios" *ngIf="verificarRutaDashboard() && rolUser === 1" class="btn btn-outline-warning w-auto mx-3">Usuarios</a>
+      <a routerLink="/dashboard" *ngIf="verificarRutaUsuarios()" class="btn btn-outline-primary w-auto mx-3">Notas</a>
+      <a *ngIf="verificarRutaDashboard()" (click)="abrirModalCrearNota()" class="btn btn-outline-success w-auto mx-3">Crear Nota</a>
       <a (click)="abrirModalCerrarSesion()" class="btn btn-outline-danger w-auto mx-3"><i class="fa-solid fa-right-from-bracket"></i></a>
     </div>
   </div>
