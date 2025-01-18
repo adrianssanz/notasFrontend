@@ -8,6 +8,7 @@
           <th>Nombre</th>
           <th>Correo</th>
           <th>Rol</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
           <td>{{ usuario.usuario }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.rol.rol }}</td>
+          <td class="text-center"><a [class.disabled]=" idUser === usuario.id" (click)="abrirModalConfirmar(usuario.id)" class="btn btn-danger w-auto mx-3">Eliminar</a></td>
         </tr>
       </tbody>
     </table>

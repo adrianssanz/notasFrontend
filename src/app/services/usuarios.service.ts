@@ -16,4 +16,8 @@ export class UsuariosService {
       withCredentials: true,
     });
   }
+
+  deleteUsuario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/usuarios/${id}`, { withCredentials: true });
+  }
 }
