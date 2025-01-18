@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Nota } from '../../interfaces/nota';
 import { NotasService } from '../../services/notas.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalEliminarComponent } from '../modal-eliminar/modal-eliminar.component';
+import { ModalConfirmarComponent } from '../modal-confirmar/modal-confirmar.component';
 import { ModalUpdateNotaComponent } from '../modal-update-nota/modal-update-nota.component';
 import { CapitalizePipe } from '../../classes/CapitalizePipe';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-nota',
@@ -19,14 +20,25 @@ export class NotaComponent {
 
   constructor(
     private notasService: NotasService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
-  abrirModalEliminar(id: number) {
-    this.matDialog.open(ModalEliminarComponent, {
-      data: { id: id },
-    });
-  }
+  abrirModalConfirmar(id: number) {
+      const dialogRef = this.matDialog.open(ModalConfirmarComponent, {
+        data:{
+          message: "¿Eliminar nota?"
+        },
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.deleteNota(id);
+        } else {
+          console.log('Acción cancelada');
+        }
+      });
+    }
 
   abrirModalUpdate(id: number) {
     this.matDialog.open(ModalUpdateNotaComponent, {
@@ -43,5 +55,23 @@ export class NotaComponent {
         console.error('Error al finalizar la notas:', error);
       },
     });
+  }
+
+  deleteNota(id: number): void {
+    this.snackBar.open("Borrando nota", '', {
+      duration: 3000
+    }).afterDismissed().subscribe(() => {
+      this.notasService.deleteNota(id).subscribe({
+        next: (data) => {
+          window.location.reload();
+          console.log("Nota eliminada.");
+        },
+        error: (error) => {
+          console.error('Error al eliminar la notas:', error);
+        },
+      });
+      
+    });
+    
   }
 }

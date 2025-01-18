@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalEliminarComponent } from './modal-eliminar.component';
+import { ModalConfirmarComponent } from './modal-confirmar.component';
 
-describe('ModalEliminarComponent', () => {
-  let component: ModalEliminarComponent;
-  let fixture: ComponentFixture<ModalEliminarComponent>;
+describe('ModalConfirmarComponent', () => {
+  let component: ModalConfirmarComponent;
+  let fixture: ComponentFixture<ModalConfirmarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalEliminarComponent]
+      imports: [ModalConfirmarComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalEliminarComponent);
+    fixture = TestBed.createComponent(ModalConfirmarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

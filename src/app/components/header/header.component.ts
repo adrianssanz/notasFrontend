@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalCerrarSesionComponent } from '../modal-cerrar-sesion/modal-cerrar-sesion.component';
+import { ModalConfirmarComponent } from '../modal-confirmar/modal-confirmar.component';
 import { ModalCrearNotaComponent } from '../modal-crear-nota/modal-crear-nota.component';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -14,17 +15,34 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   constructor(
     private matDialog: MatDialog,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
+
+  ngOnInit(): void {
+    this.cargarRolUsuario();
+  }
 
   rolUser!: number;
 
-  abrirModalCerrarSesion() {
-    this.matDialog.open(ModalCerrarSesionComponent);
+  abrirModalConfirmar() {
+    const dialogRef = this.matDialog.open(ModalConfirmarComponent, {
+      data:{
+        message: "¿Cerrar sesión?"
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.logOut();
+      } else {
+        console.log('Acción cancelada');
+      }
+    });
   }
 
   abrirModalCrearNota() {
@@ -48,5 +66,21 @@ export class HeaderComponent {
         console.log('No hay usuario logueado.');
       }
     });
+  }
+
+  logOut() {
+    this.snackBar
+      .open('Cerrando sesión', '', {
+        duration: 1000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      })
+      .afterDismissed()
+      .subscribe(() => {
+        this.authService.logout().subscribe(() => {
+          this.router.navigate(['/']);
+          console.log("Sesión cerrada.");
+        });
+      });
   }
 }
