@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="m-5">
+    <h2 class="text-center text-light display-4 mb-5">Usuarios</h2>
+    <table class="table table-bordered w-75 mx-auto">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.usuario }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.rol.rol }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

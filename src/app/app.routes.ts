@@ -7,6 +7,8 @@ import { authGuard } from './guards/auth.guard';
 import { auth2Guard } from './guards/auth2.guard';
 import { ErrorComponent } from './error/error/error.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
+import { adminGuard } from './guards/admin.guard';
 
 
 export const routes: Routes = [
@@ -29,6 +31,10 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent, canActivate: [authGuard]
+      },
+      {
+        path: 'usuarios',
+        component: ListaUsuariosComponent, canActivate: [adminGuard]
       }
     ]
   },
