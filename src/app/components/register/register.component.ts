@@ -42,7 +42,7 @@ export class RegisterComponent {
   }
 
   login() {
-    this.authService.login(this.username, this.password).subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         
             this.router.navigate(['/dashboard']);
