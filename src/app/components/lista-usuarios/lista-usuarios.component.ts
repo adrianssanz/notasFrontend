@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { UsuariosService } from '../../services/usuarios.service';
 import { AuthService } from '../../services/auth.service';
-import { Usuario } from '../../interfaces/nota';
+import { RespuestaUsuarios, Usuario } from '../../interfaces/nota';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,29 +27,48 @@ export class ListaUsuariosComponent implements OnInit {
     this.cargarRolUsuario();
   }
 
-  usuarios: Usuario[] = [];
   idUser!: number;
+  usuarios: Usuario[] = [];
+  respuesta!: RespuestaUsuarios;
+  pagina: number = 0;
+  totalPaginas: number = 0;
 
   abrirModalConfirmar(id: number) {
-        const dialogRef = this.matDialog.open(ModalConfirmarComponent, {
-          data:{
-            message: "¿Eliminar usuario?"
-          },
-        });
-    
-        dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-            this.deleteUsuario(id);
-          } else {
-            console.log('Acción cancelada');
-          }
-        });
+    const dialogRef = this.matDialog.open(ModalConfirmarComponent, {
+      data: {
+        message: '¿Eliminar usuario?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteUsuario(id);
+      } else {
+        console.log('Acción cancelada');
       }
+    });
+  }
+
+  siguientePagina(): void {
+    if (this.pagina < this.totalPaginas - 1) {
+      this.pagina++;
+      this.cargarUsuarios();
+    }
+  }
+
+  anteriorPagina(): void {
+    if (this.pagina > 0) {
+      this.pagina--;
+      this.cargarUsuarios();
+    }
+  }
 
   cargarUsuarios(): void {
-    this.usuariosService.getUsuarios().subscribe({
+    this.usuariosService.getUsuarios(this.pagina).subscribe({
       next: (data) => {
-        this.usuarios = data;
+        this.usuarios = data.usuarios;
+        this.respuesta = data;
+        this.totalPaginas = data.totalPaginas;
       },
       error: (error) => {
         console.error('Error al cargar las notas:', error);

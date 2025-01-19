@@ -25,6 +25,13 @@ export interface RespuestaNotas{
     paginaActual: number;
 }
 
+export interface RespuestaUsuarios{
+    totalItems: number;
+    usuarios: Usuario[];
+    totalPaginas: number;
+    paginaActual: number;
+}
+
 export interface Usuario {
     id: number;
     usuario: string;
