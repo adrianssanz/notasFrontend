@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Nota, Respuesta, Usuario } from '../../interfaces/nota';
+import { Nota, RespuestaNotas, Usuario } from '../../interfaces/nota';
 import { NotasService } from '../../services/notas.service';
 import { NotaComponent } from '../nota/nota.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,7 +21,7 @@ export class ListaNotasComponent implements OnInit {
   ) {}
 
   notas: Nota[] = [];
-  respuesta!: Respuesta;
+  respuesta!: RespuestaNotas;
   pagina: number = 0;
   totalPaginas: number = 0;
   usuario!: string;

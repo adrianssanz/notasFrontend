@@ -18,7 +18,7 @@ export interface Role{
     rol: string;
 }
 
-export interface Respuesta{
+export interface RespuestaNotas{
     totalItems: number;
     notas: Nota[];
     totalPaginas: number;
